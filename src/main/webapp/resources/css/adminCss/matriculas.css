@@ -1,0 +1,88 @@
+
+#formMatriculas {
+
+    margin: auto;
+    width: 90%;
+    margin-top: 10px;
+
+
+}
+#formMatriculas .p-mr-2{
+    border: none;
+    border-radius: 35px;
+    background: #5FCAA8;
+   position: absolute;
+   margin-top: 15px;
+   margin-left: 1220px;
+}
+
+body .ui-selectonemenu{
+    border:none;
+    background: none;
+}
+
+#formMatriculas .tablam table{
+    margin-top: 15px;
+    border-collapse: separate;
+  
+
+}
+
+#formMatriculas .tablam .clm{
+    text-align: center;
+    border-radius: 35px;
+
+}
+
+#formMatriculas .ui-button-success{
+    color: white;
+    background: #5FCAA8;
+    border: none;
+    border-radius: 35px;
+    top:0;
+    box-sizing: border-box;
+    z-index: 200;
+}
+
+#formMatriculas .buscard:hover{
+    border: none;
+}
+
+
+
+#formMatriculas .ui-button-success:hover{
+    border: 1px solid white;
+}
+
+#formMatriculas .ui-datatable .ui-datatable-header{
+    border-radius: 50px;
+}
+
+#formMatriculas .ui-datatable thead th {
+    background: gainsboro;
+}
+#formMatriculas  .ui-inputfield {
+    text-align: center;
+    border-radius: 35px;
+    background: white;
+    width: 145px;
+    border: 2px solid #AFAFAF;
+}
+
+
+#formMatriculas  .ui-inputfield:hover{
+    border: 1px solid white;
+}
+
+.ui-selectmanycheckbox.ui-widget td, .ui-selectoneradio.ui-widget td{
+    display: block;
+}
+i.pi.pi-search {
+    margin-left: 370px;
+    margin-top: 13px;
+    position: absolute;
+    color: #AFAFAF;
+}
+ui-cell-editor-output {
+    background: red;
+}

@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/templates/pruebita.xhtml">            
+
+            <ui:define name="content">
+                <h1 class="tituloPe" style="text-align: center; font-size: 50px; color: #036fab">Configuración de Perfil</h1>
+
+                <f:event type="preRenderView" listener="#{usuarioBean.buscarEstudiantePerfil()}"/>
+
+                <h:form id="form2">  
+
+                    <h:panelGrid columns="1" id="pgData">
+
+                        <div class="ui-g-12" id="arribita">
+                            <img class="bolita" src="../../resources/images/perfilH.svg"  />
+                            <h:panelGrid columns="1" class="informacionPersonal" >
+                                <i class="fas fa-id-card"></i>     
+                                <br></br>
+                                <br></br>
+                                <i class="fas fa-birthday-cake"></i>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2"  class="NombreUsuario">
+                                <h:inputText styleClass="sirve" value="#{usuarioBean.estudianteSeleccionado.nombre} #{usuarioBean.estudianteSeleccionado.apellido}" disabled="true"/>                        
+
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1"  class="datosPersonales">
+                                <h:inputText  styleClass="sirve" value="#{usuarioBean.estudianteSeleccionado.cedula}" disabled="true"/>
+                                <br></br>
+                                <h:inputText  styleClass="sirve" value="#{usuarioBean.estudianteSeleccionado.fecha_nacimiento}" disabled="true">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </h:panelGrid>
+
+                        </div>
+
+                        <div class="ui-g-6" id="1" style="width: 500px; margin-left: 750px; margin-top: -150px;">
+                            <h2 style="border-bottom: 2px solid #AFAFAF;">Información de contacto</h2>
+                            <h:panelGrid columns="1" class="InformacionContacto">
+                                <i class="fas fa-at"></i>
+                                <br></br>
+                                <br></br>
+                                <i class="fas fa-mobile-alt"></i>
+                            </h:panelGrid>
+                            <h:panelGrid columns="1"  class="datosInformacion">
+                                <h:inputText styleClass="sirve" value="#{usuarioBean.estudianteSeleccionado.email}" disabled="true"/>
+                                <h:inputText  styleClass="sirve" value="#{usuarioBean.estudianteSeleccionado.telefono}" disabled="true"/>
+                            </h:panelGrid>
+                        </div>
+                        <div class="ui-g-6" id="2" style="width: 500px; margin-left: 750px; margin-top: 10px">
+                            <h2 style="border-bottom: 2px solid #AFAFAF;">Información de pago</h2>
+
+                            <h:panelGrid columns="1" class="InformacionPago">
+                                <i class="far fa-credit-card"></i>
+                                <br></br>
+                                <br></br>
+                                <i class="fas fa-hourglass-end"></i>                           
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1"  class="datosPago">
+                                <h:inputText  styleClass="sirve" value="#{usuarioBean.estudianteSeleccionado.num_tarjeta}" disabled="true" />
+                                <h:inputText  styleClass="sirve" value="#{usuarioBean.estudianteSeleccionado.fecha_caducidad_t}" disabled="true">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </h:panelGrid>
+                        </div>
+                        <p:commandButton id="botonAct" value="Actualizar datos" onclick="PF('dialogPerfil').show();" style="margin-bottom: 300px; margin-left: 200px; margin-top: -80px;"/>
+
+
+                    </h:panelGrid>
+
+                </h:form>
+
+
+                <p:growl id="mensaje" showDetail="true" showSummary="false" />
+
+                <p:dialog id="dialog" widgetVar="dialogPerfil" header="Actualizar datos" responsive="true" showEffect="fade" modal="true" resizable="falase" closeOnEscape="true" draggable="false">
+                    <h:form id="form">
+
+                        <h:panelGrid columns="3" id="pgPerfil">
+
+                            <p:outputLabel for="txtNombre1" value="Nombre" />
+                            <p:inputText id="txtNombre1" value="#{usuarioBean.estudianteSeleccionado.nombre}" required="true" requiredMessage="Campo requerido"/>                    
+                            <p:message for="txtNombre1" />
+
+                            <p:outputLabel for="txtApellido1" value="Apellido" />
+                            <p:inputText id="txtApellido1" value="#{usuarioBean.estudianteSeleccionado.apellido}" required="true" requiredMessage="Campo requerido"/>
+                            <p:message for="txtApellido1" />
+
+                            <p:outputLabel for="txtCedula1" value="Cédula" />
+                            <p:inputMask id="txtCedula1" value="#{usuarioBean.estudianteSeleccionado.cedula}" required="true" requiredMessage="Campo requerido" mask="9999999999" slotChar=""/>
+                            <p:message for="txtCedula1" />
+
+                            <p:outputLabel for="txtEmail1" value="Email" />
+                            <p:inputText id="txtEmail1" value="#{usuarioBean.estudianteSeleccionado.email}" required="true" requiredMessage="Campo requerido"/>
+                            <p:message for="txtEmail1" />
+
+                            <p:outputLabel for="txtTelefono1" value="Teléfono" />
+                            <p:inputMask id="txtTelefono1" value="#{usuarioBean.estudianteSeleccionado.telefono}" required="true" requiredMessage="Campo requerido" mask="9999999999" slotChar=""/>
+                            <p:message for="txtTelefono1" />
+
+                            <p:outputLabel for="txtFecha" value="Fecha Nacimiento" />
+                            <p:calendar id="txtFecha" value="#{usuarioBean.estudianteSeleccionado.fecha_nacimiento}" locale="es" required="true" requiredMessage="Campo requerido" navigator="true"/>
+                            <p:message for="txtFecha" />
+
+                            <p:outputLabel for="txtNumTar" value="Número de tarjeta" />
+                            <p:inputMask id="txtNumTar" value="#{usuarioBean.estudianteSeleccionado.num_tarjeta}" mask="999999999999" slotChar=""/>
+                            <p:message for="txtNumTar" />
+
+                            <p:outputLabel for="txtFechaCad" value="Fecha de Caducidad (tarjeta)" />
+                            <p:calendar id="txtFechaCad" value="#{usuarioBean.estudianteSeleccionado.fecha_caducidad_t}" locale="es" navigator="true"/>
+                            <p:message for="txtFechaCad" />
+
+                            <p:outputLabel for="txtUsuario" value="Usuario" />
+                            <p:inputText id="txtUsuario" value="#{usuarioBean.usuarioSeleccionado.usuario}" required="true" requiredMessage="Campo requerido"/>
+                            <p:message for="txtUsuario" />      
+
+                            <p:outputLabel for="p3" value="Clave actual" />
+                            <p:password id="p3" placeholder="Clave actual" value="#{usuarioBean.usuarioSeleccionado.clave}" redisplay="true" disabled="true" feedback="true"
+                                        weakLabel="Débil" strongLabel="Fuerte" goodLabel="Bueno"/>
+                            <p:message for="p3" />  
+
+                            <p:outputLabel for="p1" value="Nuevo clave" />
+                            <p:password id="p1" placeholder="Nueva clave" value="#{usuarioBean.nuevoUsuario.clave}"
+                                        validatorMessage="Las claves no coiciden." match="p2" feedback="true" toggleMask="true" 
+                                        weakLabel="Débil" strongLabel="Fuerte" goodLabel="Bueno" promptLabel="Ingrese una clave"/>
+                            <p:message for="p1" />   
+
+                            <p:outputLabel for="p2" value="Confirmar nueva clave" />
+                            <p:password id="p2"  placeholder="Confirmar nueva clave" value="#{usuarioBean.nuevoUsuario.clave}" 
+                                        validatorMessage="Las claves no coiciden." feedback="true" toggleMask="true" 
+                                        weakLabel="Débil" strongLabel="Fuerte" goodLabel="Bueno" promptLabel="Ingrese una clave"/>
+                            <p:message for="p2" />  
+
+                            <h:column />
+                            <p:commandButton value="Actualizar datos" actionListener="#{usuarioBean.actualizarPerfil()}" 
+                                             update="mensaje, :form2:pgData, :form:pgPerfil" oncomplete="PF('dialogPerfil').hide();"/>
+
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+        <script src="resources/js/spanishLocale.js"></script>
+    </body>
+</html>

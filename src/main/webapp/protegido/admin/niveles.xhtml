@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/templates/plantilla.xhtml">
+            <div class="niveles">
+                <ui:define name="content">
+
+                    <div>
+
+                        <p:growl id="mensaje" showDetail="true" showSummary="false" />
+
+                        <p:dialog id="dialog" widgetVar="wdialog" header="Nuevo nivel" responsive="true" showEffect="fade" modal="true" resizable="falase" closeOnEscape="true" draggable="false">
+                            <h:form id="form">
+                                <h:panelGrid columns="3" id="pgNivel" >
+
+                                    <p:outputLabel for="txtNombre" value="Nombre" />
+                                    <p:inputText id="txtNombre" value="#{nivelBean.niveleSeleccionado.nombre}" required="true" requiredMessage="Campo requerido"/>
+                                    <p:message for="txtNombre" />
+
+                                    <p:outputLabel for="txtPrecio" value="Precio" />
+                                    <p:inputText id="txtPrecio" value="#{nivelBean.niveleSeleccionado.precio}" required="true" requiredMessage="Campo requerido"/>
+                                    <p:message for="txtPrecio" />
+
+                                    <h:column />
+                                    <p:commandButton value="Registrar" actionListener="#{nivelBean.agregarNivel()}"  update=":form:pgNivel, :formTable, mensaje"/>
+
+                                </h:panelGrid>
+                            </h:form>
+                        </p:dialog>
+
+                    </div>
+
+
+                    <div>
+
+                        <h:form id="formTable">
+
+                            <p:dataTable  var="nivel" value="#{nivelBean.nivel}" widgetVar="nivelBuscar" 
+
+                                          rows="5" id="dtNivel" editable="true" styleClass="tablan" 
+
+                                          paginator="true" paginatorPosition="bottom"
+                                          paginatorTemplate="  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+                                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                          rowsPerPageTemplate="5,10,15" emptyMessage="No se encontró registros."
+                                          filteredValue="#{nivelBean.nivelesFiltrados}"
+                                          globalFilterFunction="#{nivelBean.globalFilterFunction}">
+
+                                <f:facet name="header" class="barra-buscarn">
+                                    <p:commandButton class="nuevo" value="Nuevo" icon="pi pi-plus" styleClass="ui-button-success" 
+                                                     onclick="PF('wdialog').show();" />
+
+                                    <span>
+
+                                        <i class="pi pi-search"></i>
+                                        <p:inputText class="buscarn" id="globalFilter" onkeyup="PF('nivelBuscar').filter()" style="width:400px"
+                                                     placeholder="Buscar registro" ></p:inputText>
+
+                                    </span>
+                                </f:facet>
+
+
+                                <p:column headerText="ID"  sortBy="#{nivel.idnivel}" class="c1n">
+                                    <h:outputText value="#{nivel.idnivel}" />
+                                </p:column>
+
+                                <p:column headerText="Nivel" sortBy="#{nivel.nombre}" class="c1n">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{nivel.nombre}" />
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText value="#{nivel.nombre}" />
+                                        </f:facet>
+
+                                    </p:cellEditor>
+
+                                </p:column>
+
+                                <p:column headerText="Precio" sortBy="#{nivel.precio}" class="c1n">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{nivel.precio}" />
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText value="#{nivel.precio}" />
+                                        </f:facet>
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Estado" sortBy="#{nivel.estado}" class="c1n" >
+                                    <p:cellEditor class="hola">
+                                        <f:facet name="output" >
+                                            <h:outputText value="#{nivelBean.estadoTxt(nivel)}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:selectOneRadio id="console" value="#{nivel.estado}" unselectable="true">
+
+                                                <f:selectItem itemLabel="Activo" itemValue="1"/>
+
+
+                                                <f:selectItem itemLabel="Inactivo" itemValue="0"/>
+                                            </p:selectOneRadio>
+                                        </f:facet>
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column style="width: 8rem" headerText="Editar" class="c1n" >
+                                    <p:rowEditor editTitle="Editar fila" cancelTitle="Cancelar" saveTitle="Guardar"/>
+                                </p:column>
+
+                                <p:ajax class="editarn" event="rowEdit" listener="#{nivelBean.actualizarNivel(nivel)}" update="mensaje" />
+
+                            </p:dataTable>
+                        </h:form>
+
+                    </div>
+
+                </ui:define>
+            </div>
+
+        </ui:composition>
+
+    </body>
+</html>

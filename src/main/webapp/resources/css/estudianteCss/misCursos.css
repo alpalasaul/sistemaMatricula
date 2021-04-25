@@ -1,0 +1,58 @@
+
+body{
+    overflow-x: hidden;
+}
+
+.tituloMis{
+  
+    width: 100%;
+    margin-left: 200px;
+    margin-top: -100px;
+    position: absolute;
+}
+#formMisCursos{
+    margin-top: 30px;
+}
+#formMisCursos .class .botonP:hover{
+    color: black;
+}
+
+/*fila de titulo*/
+body #formMisCursos .ui-datatable thead th{
+    border-radius: 10px;
+    background: #EAECEE;
+        border-spacing: 20px;
+  text-align: center;
+  color: slategray ;
+}
+/*contenido de la tabla*/
+body .ui-datatable .ui-datatable-data > tr > td {
+    text-align: center;
+    border-bottom: none;
+    
+}
+/*toda la tabla*/
+.ui-datatable table {
+    border-collapse: separate;
+
+    border-radius: 10px;
+}
+/*botones*/
+.ui-button-text-only .ui-button-text{
+    border: none;
+    border-radius: 35px;
+    background: #5FCAA8;
+    color: white;
+}
+#formMisCursos .ui-button-text-only .ui-button-text:hover{
+       color: black;
+}
+body .ui-button{
+    background: inherit;
+    border: none;
+}
+body .ui-button:hover{
+    background: inherit;
+ 
+}
+

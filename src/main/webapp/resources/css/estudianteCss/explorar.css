@@ -1,0 +1,107 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+body{
+
+    font-family: "Poppins", sans-serif;
+
+
+}
+.tituloEx{
+    margin-top: -90px;
+    margin-left:200px;
+    position: absolute;
+}
+body #formExplorar .ui-datagrid .ui-datagrid-content {
+    border: none;
+}
+/*botones de seguir*/
+body #formExplorar .ui-datagrid .ui-datagrid-content .botone {
+    border-radius: 35px;
+    background: #5FCAA8;
+    border: none;
+    position: static;
+    margin-top: 30px;
+    margin-left: 200px;
+}
+body #formExplorar .ui-datagrid .ui-datagrid-content  {
+    text-align: center;
+    margin: auto;
+    padding-left: 30px;
+}
+/*tarjetas*/
+body #formExplorar .ui-panel .ui-panel-content {
+    width: 400px;
+    height: 450px;
+    position: relative;
+    line-height: 40px;
+    border: #dddddd 2px solid;
+    border-radius: 5px;
+
+}
+.imagenCur{
+    margin-top: 15px;
+    height: 155px;
+}
+body #formExplorar .ui-panel .ui-panel-content .niv{
+    margin-left: -150px;
+    position: absolute;
+}
+body #formExplorar .ui-panel .ui-panel-content .cup {
+    border: #11BC0B 2px solid;
+    padding: 5px;
+    color: #11BC0B;
+    font-size: 13px;
+    margin-right: -210px;
+    margin-top: 500px; 
+    border-radius:15px;
+   
+}
+body #formExplorar .ui-panel .ui-panel-content .cup1 {
+    border: #D7212E 2px solid;
+    padding: 5px;
+    color: #D7212E;
+    font-size: 13px;
+    margin-right: -210px;
+    margin-top: 500px; 
+    border-radius:15px;
+   
+}
+body #formExplorar .ui-panel .ui-panel-content .cup2 {
+    opacity: 0;
+   
+}
+body #formExplorar .ui-panel .ui-panel-content .tit {
+    font-weight: bold;
+    font-size: 20px;
+
+}
+body #formExplorar .ui-panel .ui-panel-content .product-description{
+    text-align: justify;
+    line-height: 18px;
+    color: #AFAFAF;
+
+}
+body #formExplorar .ui-panel .ui-panel-content .product-price{
+    position: absolute;
+    margin-bottom: 0px;
+    margin-left: -180px;
+    margin-top: 30px;
+
+}
+
+/*cabecera tarjetas*/
+body .ui-panel .ui-panel-titlebar{
+    height: 0px;
+
+    background: #EAECEE;
+}
+
+i.fas.fa-layer-group{
+
+    position: absolute;
+    margin-left: -175px;
+    margin-top: 16px;
+}
+.product-description a{
+    color: #AFAFAF;
+}

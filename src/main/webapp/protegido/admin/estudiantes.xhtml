@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/templates/plantilla.xhtml">
+
+            <ui:define name="content">
+
+                <div>
+
+                    <p:growl id="mensaje" showDetail="true" showSummary="false" />
+
+                    <p:dialog id="dialog" widgetVar="dialogEstudiante" header="Nuevo estudiante" responsive="true" showEffect="fade" modal="true" resizable="falase" closeOnEscape="true" draggable="false">
+
+                        <h:form id="form">
+
+                            <h:panelGrid columns="3" id="pgEstudiante" >
+
+                                <p:outputLabel for="txtNombre" value="Nombre" />
+                                <p:inputText id="txtNombre" value="#{usuarioBean.estudianteSeleccionado.nombre}" required="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtNombre" />
+
+                                <p:outputLabel for="txtApellido" value="Apellido" />
+                                <p:inputText id="txtApellido" value="#{usuarioBean.estudianteSeleccionado.apellido}" required="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtApellido" />
+
+                                <p:outputLabel for="txtCedula" value="Cédula" />
+                                <p:inputMask id="txtCedula" value="#{usuarioBean.estudianteSeleccionado.cedula}" required="true" requiredMessage="Campo requerido" mask="9999999999" slotChar=""/>
+                                <p:message for="txtCedula" />
+
+                                <p:outputLabel for="txtEmail" value="Email" />
+                                <p:inputText id="txtEmail" value="#{usuarioBean.estudianteSeleccionado.email}" required="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtEmail" />
+
+                                <p:outputLabel for="txtTelefono" value="Teléfono" />
+                                <p:inputMask id="txtTelefono" value="#{usuarioBean.estudianteSeleccionado.telefono}" required="true" requiredMessage="Campo requerido" mask="9999999999" slotChar=""/>
+                                <p:message for="txtTelefono" />
+
+                                <p:outputLabel for="txtFecha" value="Fecha Nacimiento" />
+                                <p:calendar id="txtFecha" value="#{usuarioBean.estudianteSeleccionado.fecha_nacimiento}" locale="es" required="true" navigator="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtFecha" />
+
+                                <p:outputLabel for="txtNumTar" value="Número de tarjeta" />
+                                <p:inputMask id="txtNumTar" value="#{usuarioBean.estudianteSeleccionado.num_tarjeta}" required="true" requiredMessage="Campo requerido" mask="999999999999" slotChar=""/>
+                                <p:message for="txtNumTar" />
+
+                                <p:outputLabel for="txtFechaCad" value="Fecha de Caducidad (tarjeta)" />
+                                <p:calendar id="txtFechaCad" value="#{usuarioBean.estudianteSeleccionado.fecha_caducidad_t}" locale="es" required="true" navigator="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtFechaCad" />
+
+                                <p:outputLabel for="txtUsuario" value="Usuario" />
+                                <p:inputText id="txtUsuario" value="#{usuarioBean.usuarioSeleccionado.usuario}" required="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtUsuario" />
+
+                                <p:outputLabel for="txtClave" value="Clave" />
+                                <p:password id="txtClave" value="#{usuarioBean.usuarioSeleccionado.clave}" required="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtClave" />
+
+                                <h:column />
+                                <p:commandButton value="Registrar" actionListener="#{usuarioBean.agregarUsuario()}" update=":form:pgEstudiante, :formEstudiantes, :formUsuarios, mensaje"/>
+
+                            </h:panelGrid>
+
+                        </h:form>
+
+                    </p:dialog>
+
+                </div>
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    function start() {
+                        PF('statusDialog').show();
+                    }
+
+                    function stop() {
+                        PF('statusDialog').hide();
+                    }
+                    //]]>
+                </script>
+
+                <div>
+                    <h:form id="formEstudiantes">
+                        <p:commandButton value="Estudiantes Registrados" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
+                                         icon="pi pi-arrow-down" styleClass="p-mr-2">
+                            <p:fileDownload value="#{reporteBean.fileEstudianteR}"/>
+                        </p:commandButton>
+
+
+
+                        <p:dataTable var="estu" value="#{usuarioBean.estudiantes}" widgetVar="estuBuscar" 
+
+                                     rows="5" id="dtEstu" editable="true" styleClass="tablae"
+
+                                     paginator="true" paginatorPosition="bottom"
+                                     paginatorTemplate="  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                     rowsPerPageTemplate="5,10,15"
+
+                                     emptyMessage="No se encontró registros."
+                                     filteredValue="#{usuarioBean.estudiantesFiltrados}"
+                                     globalFilterFunction="#{usuarioBean.globalFilterFunction}">
+
+                            <f:facet name="header" class="barra-buscare">
+                                <div>
+
+                                    <p:commandButton class="nuevo" value="Nuevo" icon="pi pi-plus" styleClass="ui-button-success" 
+                                                     style="margin-right: .5rem" onclick="PF('dialogEstudiante').show();" />
+
+                                    <span>
+                                        <i class="pi pi-search"></i>
+
+                                        <p:inputText class="buscare" id="globalFilter" onkeyup="PF('estuBuscar').filter()" style="width:400px"
+                                                     placeholder="Buscar registro" />
+                                    </span>
+                                </div>
+                            </f:facet>
+
+                            <p:column headerText="ID"  sortBy="#{estu.idestudiante}" class="c1e">                                    
+                                <h:outputText value="#{estu.idestudiante}" />                                    
+                            </p:column>
+
+                            <p:column headerText="Nombre" sortBy="#{estu.nombre}" class="c1e">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{estu.nombre}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{estu.nombre}" />
+                                    </f:facet>
+
+                                </p:cellEditor>
+
+                            </p:column>
+
+                            <p:column headerText="Apellido" sortBy="#{estu.apellido}" class="c1e">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{estu.apellido}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{estu.apellido}" />
+                                    </f:facet>
+
+                                </p:cellEditor>
+
+                            </p:column>
+
+                            <p:column headerText="CI" sortBy="#{estu.cedula}" class="c1e">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{estu.cedula}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputMask value="#{estu.cedula}" mask="9999999999" slotChar=""/>
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Email" sortBy="#{estu.email}" class="c1e"> 
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{estu.email}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{estu.email}" />
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Teléfono" sortBy="#{estu.telefono}" class="c1e">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{estu.telefono}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputMask value="#{estu.telefono}" mask="9999999999" slotChar=""/>
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Fecha Nac." sortBy="#{estu.fecha_nacimiento}" class="c1e">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{estu.fecha_nacimiento}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputText>
+
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:calendar value="#{estu.fecha_nacimiento}" navigator="true"/>
+
+                                    </f:facet>  
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="N° tarjeta" sortBy="#{estu.num_tarjeta}" class="c1e">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{estu.num_tarjeta}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputMask value="#{estu.num_tarjeta}" mask="999999999999" slotChar=""/>
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Fecha Cad." sortBy="#{estu.fecha_caducidad_t}" class="c1e">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{estu.fecha_caducidad_t}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputText>
+
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:calendar value="#{estu.fecha_caducidad_t}" navigator="true"/>
+
+                                    </f:facet>  
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Estado" sortBy="#{estu.estado}" class="c1e">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{estudianteBean.estadoTxt(estu)}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:selectOneRadio id="console" value="#{estu.estado}" unselectable="true">
+                                            <f:selectItem itemLabel="Activo" itemValue="1"/>
+                                            <f:selectItem itemLabel="Inactivo" itemValue="0"/>
+                                        </p:selectOneRadio>
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column style="width:30px;text-align: left; padding-left: 0px" headerText="Editar" class="c1e">
+                                <p:rowEditor editTitle="Editar fila" cancelTitle="Cancelar" saveTitle="Guardar"/>
+                            </p:column>
+
+
+
+                            <p:ajax event="rowEdit" listener="#{estudianteBean.actualizarEstudiante(estu)}" update="mensaje"/>
+
+                        </p:dataTable>
+
+
+                    </h:form>
+                </div>
+
+                <div>
+
+                    <h:form id="formUsuarios">
+                        <p:dataTable var="user" value="#{usuarioBean.usuario}" widgetVar="userBuscar" 
+
+                                     rows="5" id="dtUser" editable="true" styleClass="tablau"
+
+                                     paginator="true" paginatorPosition="bottom"
+                                     paginatorTemplate="  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                     rowsPerPageTemplate="5,10,15"
+
+                                     emptyMessage="No se encontró registros."
+                                     filteredValue="#{usuarioBean.usuariosFiltrados}"
+                                     globalFilterFunction="#{usuarioBean.globalFilterFunction1}">
+
+
+                            <f:facet name="header" class="barra-buscaru">
+                                <div>
+
+                                    <span>
+                                        <i class="fas fa-users" style="color: #AFAFAF; font-size: 30px; margin-left: 15px; margin-right: 5px;" ></i>
+                                        <i class="pi pi-search"></i>
+
+                                        <p:inputText class="buscaru" id="globalFilter" onkeyup="PF('userBuscar').filter()" style="width:400px"
+                                                     placeholder="Buscar registro" />
+                                    </span>
+                                </div>
+                            </f:facet>
+
+                            <p:column headerText="ID"  sortBy="#{user.estudiante_idestudiante.idestudiante}" class="c1u">
+                                <h:outputText value="#{user.estudiante_idestudiante.idestudiante}" />                                    
+                            </p:column>
+
+                            <p:column headerText="Usuario"  sortBy="#{user.usuario}" class="c1u">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{user.usuario}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{user.usuario}" />
+                                    </f:facet>
+
+                                </p:cellEditor>
+
+                            </p:column>
+
+                            <p:column headerText="Contraseña"  sortBy="#{user.clave}" class="c1u">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{user.clave}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{user.clave}" />
+                                    </f:facet>
+
+                                </p:cellEditor>
+
+                            </p:column>
+
+                            <p:column headerText="Rol" sortBy="#{user.rol}" class="c1u">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{usuarioBean.radioBtnRol(user)}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:selectOneRadio id="console" value="#{user.rol}" unselectable="true">
+                                            <f:selectItem itemLabel="Adminsitrador" itemValue="A"/>
+                                            <f:selectItem itemLabel="Estudiante" itemValue="E"/>                                            
+                                        </p:selectOneRadio>
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Editar" class="c1u">
+                                <p:rowEditor editTitle="Editar fila" cancelTitle="Cancelar" saveTitle="Guardar"/>
+                            </p:column>
+
+                            <p:ajax event="rowEdit" listener="#{usuarioBean.actualizarUsuario(user)}" update="mensaje"/>
+
+                        </p:dataTable>
+                    </h:form>
+
+                </div>
+
+
+            </ui:define>
+
+        </ui:composition>
+        <script src="resources/js/app.js"></script>
+    </body>
+</html>

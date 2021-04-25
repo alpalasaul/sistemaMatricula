@@ -1,0 +1,142 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+body{
+     font-family: "Poppins", sans-serif;
+}
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+#cabecera{
+
+margin-top: 30px;
+    width: 90%;
+    margin: auto;
+     /*para hacer los elementos visibles*/ 
+    overflow: hidden;
+}
+
+
+#logo-principal{
+z-index: 200;
+height: 80px;
+padding-right: 0px;
+    position: absolute;
+    
+}
+
+#cont-img{
+    /*position: absolute;*/
+    width: 100%;
+    margin-left: 700px;
+    margin: auto;
+    margin-top: 90px;
+    height: 200px;
+}
+#cont-img .ui-g-12 img{
+    margin-top: -7px;
+    width: 100%;
+    height: 200px;
+}
+#top{
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+#top .menubar{
+    height: 90px;
+}
+#top .nombreU{
+    margin-right: 20px;
+    margin-left: 5px;
+    color: gray;
+}
+#top .boton-c{
+
+      color: white;
+    background: #5FCAA8;
+    border: 1px solid #5FCAA8;
+    top:0;
+    box-sizing: border-box;
+    z-index: 200;
+    border-radius: 35px;
+
+}
+#content{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+#part-inf{
+   
+    float: bottom;
+    position: relative;
+    width: 100%;
+    margin: auto;
+    /*para hacer los elementos visibles*/ 
+    overflow: hidden;
+    background-color: #5FCAA8;
+    font-size: 18px;
+    color: white;
+    display: block;
+   bottom: 0;
+    
+}
+#part-inf .parte{
+    margin-left: 160px;
+     line-height: 30px;
+}
+.parte h3{
+    margin-left: 50px;
+}
+.parte h3 .titRedes{
+    margin-left: 500px;
+}
+#part-inf .parte a{
+    margin-bottom: 0;
+    color: white;
+    font-size: 17px;
+    margin: 5px;
+    text-decoration: none;
+}
+
+#part-inf .parte #iconos-redes{
+padding-left: 0px;
+    
+}
+#part-inf .parte #nombres-redes{
+    margin-left: -50px;
+ line-height: 37px;
+    
+}
+#part-inf .copy {
+    text-align: center;
+    font-size: 13px;
+}
+
+.social-icon {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    border-radius: 50%;
+    border: 1px solid white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    margin-bottom: 0;
+}
+
+.social-icon:hover {
+    color: #4481eb;
+    border-color: #5FCAA8;
+}

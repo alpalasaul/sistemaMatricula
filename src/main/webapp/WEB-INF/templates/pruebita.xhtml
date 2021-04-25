@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="../../resources/css/pruebita.css"/>    
+        <link rel="stylesheet" href="../../resources/css/estudianteCss/explorar.css"/> 
+        <link rel="stylesheet" href="../../resources/css/estudianteCss/ayuda.css"/> 
+        <link rel="stylesheet" href="../../resources/css/estudianteCss/misCursos.css"/> 
+        <link rel="stylesheet" href="../../resources/css/estudianteCss/perfil.css"/> 
+
+        <script src="https://kit.fontawesome.com/363f4f6fdc.js"></script>
+        <title>SDS</title>
+        <f:event type="preRenderView" listener="#{plantillaBean.verificarSesion()}"/>
+
+    </h:head>
+
+    <h:body>
+        <div id="top">
+            <ui:insert name="top">
+                <h:form>              
+                    <div class="logo-cabecera"><img id="logo-principal" src="../../resources/images/logo_sds.png" alt=""/></div>
+
+                    <p:menubar model="#{menuBean.model}" styleClass="menubar" style="padding-left:200px; padding-top: 25px">
+
+                        <f:facet name="options">
+                            <i class="far fa-user" style="color: gray"></i>
+                            <h:outputText class="nombreU" value="#{menuBean.mostrarUsuarioLogeado()}"></h:outputText>
+                            <p:commandButton actionListener="#{menuBean.cerrarSesion()}" value="Cerrar Sesión" action="/index?faces-redirect=true" 
+                                             icon="pi pi-fw pi-sign-out" class="boton-c"/>
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </ui:insert>
+        </div>
+        <header id="cabecera">
+        </header>
+
+
+
+
+        <div id="cont-img">
+            <div class="ui-g-12">
+                <img src="../../resources/images/fondo.jpg" alt="" class="img"/>
+
+            </div>
+        </div>
+
+        <div id="content" class="left_content">
+
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <footer id="part-inf">
+
+            <div class="barra-abajo">
+                <a name="contactos" id="contactos"/>
+                <div class="parte">
+
+                    <div class="ui-g-5">
+                        <h4>Dirección</h4>
+
+                        <p> Av. Atahualpa Oe2-48 y Hernando de la Cruz, Edificio SDS</p>
+                        <p>Pichincha-Quito</p>
+                        <p>Ecuador</p>
+                    </div>
+
+                    <div class="ui-g-3">
+                        <h4>Contactos</h4>
+
+                        <p> <a href="http://localhost:8080/systemMatricula/info@cetececuador.com">info@sdsecuador.com</a></p>
+                        <p>0958868001 / 0982315897</p>
+                        <p>  <a href="http://www.cetececuador.com/">http://www.sdsecuador.com</a></p>
+                    </div>
+
+
+                    <h4 style="padding-top:8px" >Redes Sociales</h4>
+                    <div class="ui-g-1" id="iconos-redes"><a target="_blank" href="https://www.facebook.com/cetececuador" class="social-icon"><i class="fab fa-facebook-f"></i> </a>
+                        <a target="_blank" href="https://twitter.com/CETECEcuador" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a  target="_blank" href="https://www.instagram.com/cetececuador/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a target="_blank" href="https://www.linkedin.com/company/cetec-ecuador" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="ui-g-1" id="nombres-redes">
+                        <p>Facebook</p>
+                        <p>Twitter</p>
+                        <p>Instagram</p>
+                        <p>Linkedin</p>
+                    </div>
+
+                </div>
+                <div class="copy">
+                    <div class="ui-g-12">copyright &copy;2019 aviso legal y politica de privacidad </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="./../../resources/js/spanishLocale.js"></script>
+
+    </h:body>
+
+</html>

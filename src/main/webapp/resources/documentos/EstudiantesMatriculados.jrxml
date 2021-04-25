@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="41160a4c-19a8-43e6-98af-ba1c43f9ed0f">
+	<property name="ireport.zoom" value="1.6105100000000019"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="c01ec445-a09b-42d1-97ef-a0369a72ed1a"/>
+	<queryString>
+		<![CDATA[select e.nombre as 'Estudiante',e.apellido as 'ApellidoEstu', c.nombre as 'Curso', d.nombre as 'Docente', d.apellido as 'ApellidoDocente', m.fecha_matricula as 'Fecha de Matricula'
+from estudiante e, docente d, curso c, matricula m
+where e.idestudiante= m.estudiante_idestudiante and d.idDocente= c.docente_idDocente and c.idcurso= m.curso_idcurso;]]>
+	</queryString>
+	<field name="Estudiante" class="java.lang.String"/>
+	<field name="ApellidoEstu" class="java.lang.String"/>
+	<field name="Curso" class="java.lang.String"/>
+	<field name="Docente" class="java.lang.String"/>
+	<field name="ApellidoDocente" class="java.lang.String"/>
+	<field name="Fecha de Matricula" class="java.sql.Timestamp"/>
+	<background>
+		<band height="555" splitType="Stretch">
+			<line>
+				<reportElement x="201" y="431" width="117" height="1" uuid="903e70c9-b187-4440-b9a1-52369d356e0b">
+					<printWhenExpression><![CDATA[Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Dotted" lineColor="#996600"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="72" y="37" width="204" height="1" uuid="ba1c671e-80e6-4de3-865c-fbc256656ad0">
+					<printWhenExpression><![CDATA[Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Dotted" lineColor="#996600"/>
+				</graphicElement>
+			</line>
+		</band>
+	</background>
+	<title>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="154" y="83" width="449" height="29" uuid="a06cc1a5-0ebd-4985-b7b4-f064a71f301d"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lista de Estudiantes Matriculados 2020-2021]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="65" forecolor="#006699" backcolor="#40AEB4" uuid="328b375c-551f-4539-8b9e-5473089d9570"/>
+				<staticText>
+					<reportElement style="Title" x="25" y="0" width="578" height="65" uuid="95215e70-1041-4c0c-89b3-3124b891760c"/>
+					<textElement textAlignment="Left">
+						<font size="54" isBold="false"/>
+					</textElement>
+					<text><![CDATA[SDS]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="253" y="0" width="115" height="14" forecolor="#000000" uuid="e586133b-4aff-450e-b94f-c2c7bc5eec1d"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="440" y="0" width="115" height="14" forecolor="#000000" uuid="8b496f20-2e4e-462f-9b4c-77118b2f9638"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Docente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="640" y="0" width="115" height="14" forecolor="#000000" uuid="cbcf06ba-830b-4562-abb9-608eac673165"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Fecha de Matricula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="72" y="0" width="115" height="14" forecolor="#000000" uuid="adb2d222-b511-4262-882a-e4f90d431d4a"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Estudiante]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="58" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="4" y="17" width="798" height="1" uuid="6f4a530b-e1ad-43a9-895f-2344eae1b4d1"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="640" y="0" width="115" height="14" uuid="da1d9d98-992c-4f88-8954-76b7906d7842"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha de Matricula}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="241" y="0" width="115" height="14" uuid="0d45dde6-3851-4be4-adca-f3f01d8b7c6d"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Curso}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="59" y="0" width="60" height="14" uuid="cb1f8679-4138-4bfe-ad65-4a62ff82cfab"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Estudiante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="47" height="14" uuid="616a98c0-5d09-4c16-bb55-3eeb3cd8758d"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Docente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="0" width="100" height="14" uuid="50221acf-1b18-4d20-a1ef-a000359e7eff"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ApellidoEstu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="0" width="69" height="14" uuid="63b83782-6bab-4709-bea1-bafc3a569461"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ApellidoDocente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="76" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="0d3c6f8e-8072-4baa-95c1-df8b0f6eb543"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="4" y="4" width="71" height="16" forecolor="#000000" uuid="9078e311-f5ad-482c-b390-8109621d4fbb"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Dirección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="4" y="20" width="218" height="18" forecolor="#000000" uuid="e83a4e7b-9609-4c5a-ba19-5867255a9a00"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Av. Atahualpa y Hernando de la Cruz]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="4" y="39" width="115" height="14" forecolor="#000000" uuid="555bbeb4-afad-413c-a64e-313fb284c723"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Pichincha - Ecuador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="318" y="6" width="115" height="14" forecolor="#000000" uuid="62cdd9f4-4857-41dd-b413-92242cec76f7"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Contactos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="318" y="20" width="115" height="14" forecolor="#000000" uuid="fef6e495-ff28-445d-a113-18fab48a5921"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[info@sdsecuador.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="665" y="57" width="115" height="14" forecolor="#000000" uuid="a2bb1bbe-f28f-4352-b499-504672c21b81"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Doménica Erazo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="665" y="39" width="115" height="14" forecolor="#000000" uuid="735c1d45-1525-43f0-990d-2339ef1129e1"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Directora de SDS]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="800" height="16" forecolor="#58B4DA" backcolor="#40AEB4" uuid="db8a4e79-f3fa-4d93-b4a2-9e02ced29342"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="704e1297-0b31-4e38-a0a3-8f95d14b2377"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="f9add8e7-f61c-4672-a20e-d6e02d57d771"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="16" forecolor="#FFFFFF" uuid="69e1ebe5-61e9-4d87-b4fc-18a3e9a9b83f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

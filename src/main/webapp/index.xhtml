@@ -1,0 +1,339 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <script src="https://kit.fontawesome.com/363f4f6fdc.js"></script>
+        <link rel="stylesheet" href="resources/css/estiloLogin.css"/>
+
+        <title>SDS</title>
+        <script languague="javascript">
+
+        </script>
+
+    </h:head>
+    <h:body>
+
+
+
+        <div class="contenedor">
+
+            <div class="contenedor-forms">
+
+                <div class="login-registro">
+
+                    <p:growl showDetail="true" id="mensaje" showSummary="false"/>
+
+                    <h:form class="login-form">
+                        <h2 class="titulo">Iniciar Sesión</h2>
+                        <div class="campos">
+                            <i class="fas fa-user"></i>
+                            <p:inputText type="text"  class="rellenar" placeholder="Nombre de usuario" value="#{usuarioBean.usuarioSeleccionado.usuario}" required="true" requiredMessage="Campo requerido"/>
+
+                        </div>
+                        <div class="campos">
+                            <i class="fas fa-lock"></i>
+                            <p:password  placeholder="Contraseña" class="rellenar" value="#{usuarioBean.usuarioSeleccionado.clave}" required="true" toggleMask="true" requiredMessage="Campo requerido" promptLabel="Ingrese una clave"/>
+                        </div>
+                        <p:commandButton type="submit" class="btn solid" value="Iniciar Sesión" action="#{usuarioBean.iniciarSesion()}" update=" mensaje"></p:commandButton>
+                        <p:separator />
+                    </h:form>
+                    <h:form id="formRegis" class="registro-form">
+
+
+                        <h2 class="titulo">Registrarse</h2>
+
+                        <div class="campos">
+                            <i class="fas fa-user"></i>
+                            <p:inputText type="text" class="reg" placeholder="Nombre" value="#{usuarioBean.estudianteSeleccionado.nombre}" required="true" requiredMessage="Campo requerido"/>
+                        </div>
+
+                        <div class="campos">
+                            <i class="fas fa-user"></i>
+                            <p:inputText type="text" class="reg" placeholder="Apellido" value="#{usuarioBean.estudianteSeleccionado.apellido}" required="true" requiredMessage="Campo requerido"/>
+                        </div>
+
+                        <div class="campos">
+                            <i class="fas fa-id-card"></i>
+                            <p:inputMask type="text" class="reg" placeholder="Cédula" value="#{usuarioBean.estudianteSeleccionado.cedula}" required="true" mask="9999999999" slotChar="" requiredMessage="Campo requerido"/>
+                        </div>
+
+                        <div class="campos">
+                            <i class="fas fa-envelope"></i>
+                            <p:inputText type="email" class="reg"  placeholder="Correo electrónico" value="#{usuarioBean.estudianteSeleccionado.email}" required="true" requiredMessage="Campo requerido"/>
+                        </div>
+
+                        <div class="campos">
+                            <i class="fas fa-mobile-alt"></i>     
+                            <p:inputMask type="text" class="reg" placeholder="Teléfono" value="#{usuarioBean.estudianteSeleccionado.telefono}" required="true" mask="9999999999" slotChar="" requiredMessage="Campo requerido"/>
+                        </div>
+
+                        <div class="campos">
+                            <i class="fas fa-calendar-alt"></i>
+                            <p:calendar id="german" value="#{usuarioBean.estudianteSeleccionado.fecha_nacimiento}" locale="es" navigator="true" requiredMessage="Campo requerido"
+                                        pattern="yyyy-MMM-dd" placeholder="Fecha de nacimiento" styleClass="calendario"/>
+                        </div>
+
+                        <h2 class="titulo">Datos de usuario</h2>
+                        <div class="campos">
+                            <i class="fas fa-user"></i>
+                            <p:inputText type="text" class="reg"  placeholder="Nombre de usuario" value="#{usuarioBean.usuarioSeleccionado.usuario}" required="true" requiredMessage="Campo requerido"/> 
+                        </div>
+
+                        <div class="campos">
+                            <i class="fas fa-key"></i>
+                            <p:password id="p1" class="reg" placeholder="Contraseña" value="#{usuarioBean.usuarioSeleccionado.clave}" required="true" requiredMessage="Campo requerido"
+                                        validatorMessage="Las claves no coiciden." match="p2" feedback="true" toggleMask="true" 
+                                        weakLabel="Débil" strongLabel="Fuerte" goodLabel="Bueno" promptLabel="Ingrese una clave"/>
+                        </div>
+
+                        <div class="campos">
+                            <i class="fas fa-key"></i>
+                            <p:password id="p2" class="reg" placeholder="Confirmar contraseña" value="#{usuarioBean.usuarioSeleccionado.clave}" required="true" requiredMessage="Campo requerido"  
+                                        validatorMessage="Las claves no coiciden." feedback="true" toggleMask="true" 
+                                        weakLabel="Débil" strongLabel="Fuerte" goodLabel="Bueno" promptLabel="Ingrese una clave"/>
+                        </div>
+
+                        <!--boton que permite registrarse-->
+                        <p:commandButton type="submit" class="btn solid" value="Registrarse" action="#{usuarioBean.agregarUsuario()}" update="mensaje, formRegis" />
+
+
+                    </h:form>
+
+                </div>
+
+            </div>
+
+            <div class="contenedores-ventanas">
+
+                <div class="ventana ventana-izquierda">
+                    <div class="contenido">
+                        <img src="resources/images/logo_sds_b.png" class="cetec" alt=""></img>
+
+                        <h3>¿Eres nuevo aquí?</h3>
+                        <p>Te invitamos a ser parte de nuestra comunidad, regístrate para que puedas navegar a través de nuestros cursos y elijas la mejor opción para tí.</p>
+                        <!--boton para cambiar la pantalla-->
+                        <button class="btn transparente" id="sign-up-btn" >Registrarse</button>
+                    </div>
+
+                    <button class="btn transparente" id="exp" >Explorar cursos</button>
+
+
+                    <img src="resources/images/login.svg" class="imagen" alt=""></img>
+                </div>
+
+                <div class="ventana ventana-derecha">
+                    <div class="contenido">
+
+                        <img src="resources/images/logo_sds_b.png" class="cetec" alt=""></img>
+                        <h3>¿Ya eres uno de nosotros?</h3>
+                        <p></p>
+                        <!--boton para cambiar la pantalla-->
+                        <button class="btn transparente" id="sign-in-btn">Iniciar Sesión</button>
+                    </div>
+                    <img src="resources/images/registro.svg" class="imagen" alt="" />
+                </div>
+            </div>
+
+            <header id="cabecera">
+
+                <div class="logo-cabecera"><a href="#iniciar"><img id="logo-principal" src="resources/images/logo_sds_b.png" alt=""/></a></div>
+                <button class="btn transparente" id="regresarInicio" >Iniciar sesión</button>
+                <div class="barra-arriba">
+                    <div class="ui-g-1"><a href="#cursitos">Cursos</a></div>
+                    <div class="ui-g-1"><a href="#nosotros">Nosotros</a></div>
+                    <div class="ui-g-1"><a href="#contactos">Contactos</a></div>
+                </div>
+            </header>
+            <div class="scrolli">
+                <a name="iniciar" id="iniciar"/>
+
+                <div class="contenido1">
+
+                    <section >
+
+
+
+                        <div id="cont-img">
+                            <div class="ui-g-12">
+                                <img src="resources/images/fondo1.jpg" alt="" class="img"/>
+                            </div>
+                        </div>
+
+                        <div id="texto1" class="iniciar" >
+
+
+                            <div >
+                                <div class="ui-g-4" id="peque"><i class="fas fa-laptop-code"></i>   Encuentra cursos sobre casi cualquier tema informático</div>
+                                <div class="ui-g-4" id="peque"><i class="fas fa-book-reader"></i>  Aprende junto a los mejores instructores de cada área  </div>
+                                <div class="ui-g-4" id="peque"><i class="fas fa-book-open"></i>  Cada día te ayudaremos a ser mejor en lo que te gusta<br></br></div>
+                            </div>
+                            <div class="ui-g-12" id="1">
+                                <div class="ui-g-8" ><h2>Obtén la mejor asesoría para tu futuro</h2><br></br>Consigue acceso ilimitado en todos nuestros cursos disponibles</div>
+
+                                <div class="ui-g-4"><img src="resources/images/educacion3.svg" alt="" class="imagen1"/> </div>
+                            </div>
+                            <div class="ui-g-12"  id="1">    
+                                <div class="ui-g-4"><img src="resources/images/educacion1.svg" alt="" class="imagen1"/> </div>
+                                <div class="ui-g-8"><h2> Transforma tu vida mediante la educación</h2><br></br>No te amargues con tu propio fracaso ni se lo cargues a otro. Acéptate ahora o seguirás justificándote como un niño. Recuerda que cualquier momento es bueno para comenzar y que ninguno es tan terrible para claudicar. </div>
+                            </div>
+                            <div class="ui-g-12"  id="1">     
+
+                                <div class="ui-g-8"><h2>Conviértete en el mejor en lo que haces</h2><br></br>La calidad nunca es un accidente, siempre es resultado de un esfuerzo de la inteligencia (John Ruskiin)</div>
+                                <div class="ui-g-4"><img src="resources/images/educacion2.svg" alt="" class="imagen1"/> </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div id="texto2" class="cursos">
+                            <div class="espacio2">
+                                <a name="cursitos" id="cursitos"/>
+                            </div>
+
+
+                            <h:form id="formExplorar">
+
+                                <p:growl id="msj" showDetail="true" showSummary="false"/>
+                                <p:dataGrid styleClass="tablaCursos" var="char" value="#{cursoBean.cursosDisponibles}" columns="3" layout="grid" rows="6" paginator="true" id="pacs"
+                                            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" paginatorPosition="bottom"
+                                            rowsPerPageTemplate="6,12,16">
+
+
+                                    <p:panel > 
+                                        <h:panelGrid columns="1" style="width: 100%" id="pgExplo" >
+                                            <i class="fas fa-layer-group"></i>
+                                            <h:outputText class="niv" value="#{char.nivel_idnivel.nombre}" />
+                                            <span class="#{matriculaBean.visibleCupos(char)}" id="actu">Cupos disponibles: #{char.cupo}</span>
+                                            <p:graphicImage  class="imagenCur" name="#{char.url}"/>
+                                            <div class="tit">#{char.nombre} </div>
+                                            <div class="product-description">#{char.descripcion}...</div>
+                                            <div class="product-grid-item-bottom">
+                                                <h:outputText value="$#{char.nivel_idnivel.precio}" styleClass="product-price">
+                                                    <f:convertNumber currencySymbol="" type="currency"/>
+                                                </h:outputText>
+
+                                                <p:commandButton class="botone" value="#{matriculaBean.comprobarBtnMatricula(char)}" 
+                                                                 disabled="#{matriculaBean.comprobarMatriculaExistente(char)}" action="index?faces-redirect=true">
+                                                </p:commandButton>
+                                            </div>
+
+                                        </h:panelGrid>
+                                    </p:panel  >
+
+                                </p:dataGrid>
+                            </h:form>
+                        </div>
+
+                        <div id="texto3" class="nosotros"> 
+                            <div class="espacio3">
+                                <a name="nosotros" id="nosotros"/>
+                            </div>
+
+
+                            <h:form>
+
+                                <div>
+                                    <img src="resources/images/nosotros.png" alt="" class="flotante"></img>
+                                    <div id="texto5" class="contactos">
+
+                                        <div class="espacio5">
+                                            <a name="contactos" id="contactos"/>
+                                        </div>
+                                    </div>
+                                    <p>Centro Tecnológico de Entrenamiento y Capacitación SDS, especialistas en formación, capacitación y entrenamiento en las nuevas tendencias en Tecnología Informática. La experiencia de 12 años en el mercado,  nos permite ofrecer a nuestros clientes servicios de alta calidad, para lo cual contamos con 16 laboratorios equipados, para brindar adecuados procesos de capacitación.</p>
+                                    <br></br>
+
+                                    <p>   El constante desarrollo de la tecnología nos obliga a diseñar, revisar y crear nuevas opciones de cursos de capacitación, así como nuevos modelos educativos que se coloquen a la vanguardia de la capacitación bajo el enfoque de las competencias profesionales en el Ecuador. Bajo este marco hemos desarrollado nuevas plataformas innovando las formas de capacitación en el país, un ejemplo de ellos son nuestras ultimas plataformas: </p>
+                                    <br></br>
+
+                                    <ul>
+                                        <li>AITANA, Plataforma de Soporte Educativo</li>
+                                        <li>ANA, Plataforma de Educación Virtual</li>
+                                    </ul>
+
+                                    <br></br>
+                                    <p>   Todas ellas al servicio de nuestros clientes, para mejorar los procesos formativos en los cuales nos han permitido ser parte.
+                                        <br></br>
+                                        Tenemos instructores calificados tanto en el ámbito técnico como en el pedagógico, con una extensa experiencia y avalados por la Setec. Somos operadora de capacitación registrada y calificada por la Secretaría Técnica del Sistema Nacional de Cualificaciones y Capacitación Profesional,código de Registro SETEC-OCR-00002 y Calificación número de resolución SETEC-RA-005-2014-AC. 
+                                    </p>
+                                </div>
+
+                            </h:form>
+                        </div>
+
+
+
+                    </section>
+                    <footer id="part-inf">
+
+                        <div class="barra-abajo">
+
+
+                            <div class="parte">
+
+                                <div class="ui-g-5">
+                                    <h4>Dirección</h4>
+
+                                    <p> Av. Atahualpa Oe2-48 y Hernando de la Cruz, Edificio SDS</p>
+                                    <p>Pichincha-Quito</p>
+                                    <p>Ecuador</p>
+                                </div>
+
+                                <div class="ui-g-3">
+                                    <h4>Contactos</h4>
+
+                                    <p> <a href="http://localhost:8080/systemMatricula/info@cetececuador.com">info@sdsecuador.com</a></p>
+                                    <p>0958868001 / 0982315897</p>
+                                    <p>  <a href="http://www.cetececuador.com/">http://www.sdsecuador.com</a></p>
+                                </div>
+
+
+                                <h4 style="padding-top:8px" >Redes Sociales</h4>
+                                <div class="ui-g-1" id="iconos-redes"><a target="_blank" href="https://www.facebook.com/cetececuador" class="social-icon"><i class="fab fa-facebook-f"></i> </a>
+                                    <a target="_blank" href="https://twitter.com/CETECEcuador" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                    <a  target="_blank" href="https://www.instagram.com/cetececuador/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                    <a target="_blank" href="https://www.linkedin.com/company/cetec-ecuador" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                                <div class="ui-g-1" id="nombres-redes">
+                                    <p>Facebook</p>
+                                    <p>Twitter</p>
+                                    <p>Instagram</p>
+                                    <p>Linkedin</p>
+                                </div>
+
+                            </div>
+                            <div class="copy">
+                                <div class="ui-g-12">copyright &copy;2019 aviso legal y politica de privacidad </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <script src="resources/js/spanishLocale.js"></script>
+        <script src="resources/js/app.js"></script>
+
+
+    </h:body>
+
+</html>
+

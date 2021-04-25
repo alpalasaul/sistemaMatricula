@@ -1,0 +1,86 @@
+
+#formCursos {
+
+    margin: auto;
+    width: 90%;
+    margin-top: 10px;
+
+
+}
+
+/*tabla*/
+#formCursos .tablac table{
+    margin-top: 15px;
+    border-collapse: separate;
+
+}
+#formCursos .p-mr-2{
+    border: none;
+    border-radius: 35px;
+    background: #5FCAA8;
+   position: absolute;
+   margin-top: 15px;
+   margin-left: 1150px;
+}
+/*cabeceras*/
+#formCursos .tablac .c1c{
+    text-align: center;
+    border-radius: 25px;
+    height: 10px;
+
+}
+/*boton nuevo*/
+#formCursos .ui-button-success{
+    color: white;
+    background: #5FCAA8;
+    border: none;
+    border-radius: 35px;
+    top:0;
+    box-sizing: border-box;
+    z-index: 200;
+}
+
+#formCursos .buscarc:hover{
+    border: none;
+}
+
+#formCursos .ui-button-success:hover{
+    border: 1px solid white;
+}
+/*barra donde esta el buscar registro*/
+#formCursos .ui-datatable .ui-datatable-header{
+ 
+    border-radius: 50px;
+}
+/*titulos de tabla*/
+#formCursos .ui-datatable thead th {
+    background: gainsboro;
+}
+/*campos para ingresar datos*/
+#formCursos  .ui-inputfield {
+    text-align: center;
+    border-radius: 35px;
+    background: white;
+    width: 135px;
+    border: 2px solid #AFAFAF;
+}
+
+
+#formCursos  .ui-inputfield:hover{
+    border: 1px solid white;
+}
+/*filas donde estan los datos*/
+#formCursos .ui-datatable .ui-datatable-data > tr > td{
+ 
+}
+/*celda de estado activo o inactivo*/
+.ui-selectmanycheckbox.ui-widget td, .ui-selectoneradio.ui-widget td{
+    display: block;
+}
+/*icono buscar*/
+i.pi.pi-search {
+    margin-left: 370px;
+    margin-top: 13px;
+    position: absolute;
+    color: #AFAFAF;
+}

@@ -1,0 +1,13 @@
+
+p{
+    text-align: justify;
+}
+.imagenA{
+    height:350px;
+    float: left;
+}
+.tituloA{
+    margin-top: -90px;
+    margin-left:200px;
+    position: absolute;
+}

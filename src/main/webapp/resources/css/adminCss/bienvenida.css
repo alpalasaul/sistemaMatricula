@@ -1,0 +1,33 @@
+
+.ui-g-7:before{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    content: "";
+    position: absolute;
+    height: 2000px;
+    width: 2000px;
+    top: -90%;
+    right: 40%;
+    transform: translateY(50%);
+    background-image: linear-gradient(-45deg, #89B7EA  10%, #EAECEE  70%);
+    transition: 1.8s ease-in-out;
+    border-radius: 50%;
+    z-index: -30;
+}
+.ui-g-7 h1{
+    overflow-y: hidden;
+    text-align: center;
+    font-family: monospace;
+   margin-top: 95px;
+   color:#036fab ;
+   padding-top: 20px;
+   font-size: 50px;
+   margin-left: 170px;
+}
+.ui-g-5 img{
+    overflow-y: hidden;
+    margin-top: 80px;
+    text-align: center;
+    height: 300px;
+    margin-right: 70px;
+}

@@ -1,0 +1,28 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+body{
+
+background-color: #F8F9F9 ;
+    color:  gray;
+
+}
+.ui-g-6{
+    text-align: center;
+}
+.ui-g-6 p{
+    font-size: 28px;
+    
+}
+.ui-g-6 a{
+    text-align: left;
+ 
+    color: black;
+}
+.ui-g-6 a:hover{
+    color: red;
+}
+.ui-g-2 img{
+    margin-top: 5%;
+    height: 350px;
+   margin-left: 35%;
+}

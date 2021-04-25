@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/templates/plantilla.xhtml">
+            <div class="cursos">
+                <ui:define name="content">
+
+                    <div>
+
+                        <p:growl id="mensaje" showDetail="true" showSummary="false" />
+
+                        <p:dialog id="dialog" widgetVar="dialogCurso" header="Nuevo curso" responsive="true" showEffect="fade" modal="true"  resizable="falase" closeOnEscape="true" draggable="false">
+
+                            <h:form id="form">
+                                <h:panelGrid columns="3" id="pgCursos">
+                                    <p:outputLabel for="cboNivel" value="Nivel"/>
+                                    <p:selectOneMenu id="cboNivel" value="#{cursoBean.nivelSeleccionado.idnivel}" required="true" requiredMessage="Campo requerido">
+                                        <f:selectItems value="#{cursoBean.niveles}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat.idnivel}"/>                            
+                                    </p:selectOneMenu>
+                                    <p:message for="cboNivel" />
+
+                                    <p:outputLabel for="cboDocente" value="Docente"/>
+                                    <p:selectOneMenu id="cboDocente" value="#{cursoBean.docenteSeleccionado.idDocente}" required="true" requiredMessage="Campo requerido">
+                                        <f:selectItems value="#{cursoBean.docentes}" var="cat1" itemLabel="#{cat1.nombre} #{cat1.apellido} - #{cat1.titulo}" itemValue="#{cat1.idDocente}"/>                            
+                                    </p:selectOneMenu>
+                                    <p:message for="cboDocente" />
+
+                                    <p:outputLabel for="txtNombre" value="Nombre"/>
+                                    <p:inputText id="txtNombre" value="#{cursoBean.cursoSeleccionado.nombre}" required="true" requiredMessage="Campo requerido"/>
+                                    <p:message for="txtNombre" />
+
+                                    <p:outputLabel for="txtCupo" value="Cupos"/>
+                                    <p:inputMask id="txtCupo" value="#{cursoBean.cursoSeleccionado.cupo}" required="true" requiredMessage="Campo requerido" slotChar=""/>
+                                    <p:message for="txtCupo" />
+
+                                    <p:outputLabel for="txtFechaIni" value="Fecha de inicio" />
+                                    <p:calendar id="txtFechaIni" value="#{cursoBean.cursoSeleccionado.fechaInicio}" locale="es" navigator="true" required="true" requiredMessage="Campo requerido"
+                                                styleClass="calendario"/>
+                                    <p:message for="txtFechaIni" />
+
+                                    <p:outputLabel for="txtFechaFin" value="Fecha de finalización" />
+                                    <p:calendar id="txtFechaFin" value="#{cursoBean.cursoSeleccionado.fechaFinalizacion}" locale="es" navigator="true" required="true" requiredMessage="Campo requerido"
+                                                styleClass="calendario"/>
+                                    <p:message for="txtFechaFin" />
+
+                                    <p:outputLabel for="txtDescrip" value="Descripción" />
+                                    <p:inputTextarea id="txtDescrip" rows="5" cols="70" counter="display" maxlength="10000" required="true" requiredMessage="Campo requerido"
+                                                     counterTemplate="{0} caracteres restantes." autoResize="false" value="#{cursoBean.cursoSeleccionado.descripcion}"/>
+                                    <p:message for="txtDescrip" />
+
+                                    <h:column />
+                                    <p:outputLabel id="display" class="p-d-block" />
+
+                                    <h:column />
+                                    <h:column />
+                                    <p:commandButton value="Registrar" actionListener="#{cursoBean.agregarCurso()}" update=":form:pgCursos, :formCursos, mensaje"/>
+
+                                </h:panelGrid>
+
+                            </h:form>
+                        </p:dialog>
+
+                    </div>
+
+                    <div>
+
+                        <h:form id="formCursos">
+                            <p:commandButton value="Cursos registrados" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
+                                             icon="pi pi-arrow-down" styleClass="p-mr-2">
+                                <p:fileDownload value="#{reporteBean.fileCurso}"/>
+                            </p:commandButton>
+
+
+                            <p:dataTable var="cur" value="#{cursoBean.cursos}" widgetVar="cursoBuscar" 
+
+                                         rows="5" id="dtCur" editable="true" styleClass="tablac"
+                                         paginator="true" paginatorPosition="bottom"
+                                         paginatorTemplate="  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                         rowsPerPageTemplate="5,10,15"
+
+                                         emptyMessage="No se encontró registros."
+                                         filteredValue="#{cursoBean.cursosFiltrados}"
+                                         globalFilterFunction="#{cursoBean.globalFilterFunction}">
+
+                                <f:facet name="header" class="barra-buscarn">
+                                    <div>
+
+                                        <p:commandButton class="nuevo" value="Nuevo" icon="pi pi-plus" styleClass="ui-button-success" 
+                                                         style="margin-right: .5rem" onclick="PF('dialogCurso').show();" />
+
+                                        <span>
+                                            <i class="pi pi-search"></i>
+
+                                            <p:inputText class="buscarc" id="globalFilter" onkeyup="PF('cursoBuscar').filter()" style="width:400px"
+                                                         placeholder="Buscar registro" />
+                                        </span>
+                                    </div>
+                                </f:facet>
+
+                                <p:column headerText="ID" sortBy="#{cur.idcurso}" class="c1c">
+                                    <h:outputText value="#{cur.idcurso}" />
+                                </p:column>
+
+                                <p:column headerText="Nombre" sortBy="#{cur.nombre}" class="c1c">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cur.nombre}" />
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText value="#{cur.nombre}" />
+                                        </f:facet>
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Nivel" sortBy="#{cur.nivel_idnivel.nombre}" class="c1c">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cur.nivel_idnivel.nombre}" />
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:selectOneMenu id="cboNivel" value="#{cursoBean.nivelSeleccionado.idnivel}" required="true" requiredMessage="Campo requerido"> 
+                                                <f:selectItems value="#{cursoBean.niveles}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat.idnivel}"/>                            
+                                            </p:selectOneMenu>
+                                        </f:facet>
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Docente" sortBy="#{cur.docente_iddocente.nombre}" class="c1c">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cur.docente_iddocente.nombre} #{cur.docente_iddocente.apellido}" />
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:selectOneMenu id="cboDocente" value="#{cursoBean.docenteSeleccionado.idDocente}" required="true" requiredMessage="Campo requerido">
+                                                
+                                                <f:selectItems value="#{cursoBean.docentes}" var="cat1" itemLabel="#{cat1.nombre} #{cat1.apellido}" itemValue="#{cat1.idDocente}"/>                            
+                                            </p:selectOneMenu>
+                                        </f:facet>
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Cupo" sortBy="#{cur.cupo}" class="c1c">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cur.cupo}" />
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText value="#{cur.cupo}" />
+                                        </f:facet>
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Fecha Inicio" sortBy="#{cur.fechaInicio}" class="c1c">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cur.fechaInicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText>
+
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:calendar value="#{cur.fechaInicio}" navigator="true"/>
+
+                                        </f:facet>  
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Finalización" sortBy="#{cur.fechaFinalizacion}" class="c1c">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cur.fechaFinalizacion}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText>
+
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:calendar value="#{cur.fechaFinalizacion}" navigator="true"/>
+
+                                        </f:facet>  
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Descripcion" sortBy="#{cur.descripcion}" class="c1c">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cur.descripcion}"  />
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText value="#{cur.descripcion}" />
+                                        </f:facet>          
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column style="width:70px;text-align: center; padding-left: 0px" headerText="Estado" sortBy="#{cur.estado}" class="c1c">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cursoBean.estadoTxt(cur)}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:selectOneRadio id="console" value="#{cur.estado}" unselectable="true">
+                                                <f:selectItem itemLabel="Activo" itemValue="1"/>
+                                                <f:selectItem itemLabel="Inactivo" itemValue="0"/>
+                                            </p:selectOneRadio>
+                                        </f:facet>
+
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column style="width:30px;text-align: left; padding-left: 0px" headerText="Editar" class="c1c">
+                                    <p:rowEditor editTitle="Editar fila" cancelTitle="Cancelar" saveTitle="Guardar"/>
+                                </p:column>
+                                <div class="ajax">
+                                    <p:ajax event="rowEdit" listener="#{cursoBean.actualizarCurso(cur)}" update="mensaje"/>
+                                </div>
+
+                            </p:dataTable>
+
+                        </h:form>
+
+                    </div>
+
+                </ui:define>
+            </div>
+        </ui:composition>
+        <script src="resources/js/app.js"></script>
+    </body>
+</html>

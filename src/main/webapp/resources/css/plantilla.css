@@ -1,0 +1,45 @@
+
+
+#cabecera{
+
+
+    width: 90%;
+    margin: auto;
+    /* para hacer los elementos visibles */
+    overflow: hidden;
+}
+
+
+#cabecera .logo-cabecera{
+
+    position: absolute;
+
+}
+
+#top{
+
+    margin: auto;
+    width: 90%;
+    margin-top: 100px;
+}
+#top .menubar{
+    border-radius: 50px;
+
+}
+
+#top .boton-c{
+    color: white;
+    background: #5FCAA8;
+    border: 1px solid #5FCAA8;
+    top:0;
+    box-sizing: border-box;
+    z-index: 200;
+    border-radius: 35px;
+}
+
+#content{
+
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}

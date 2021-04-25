@@ -1,0 +1,156 @@
+
+
+#formEstudiantes {
+
+    margin: auto;
+    width: 90%;
+    margin-top: 10px;
+
+
+}
+#formEstudiantes .p-mr-2{
+    border: none;
+    border-radius: 35px;
+    background: #5FCAA8;
+   position: absolute;
+   margin-top: 15px;
+   margin-left: 1120px;
+}
+#formEstudiantes .ui-button-outlined{
+    position: absolute; 
+    border: none;
+    color: white;
+    border-radius: 35px;
+    background: #5FCAA8;
+    margin-left: 890px;
+    margin-top: 15px;
+}
+#formEstudiantes .tablae table{
+    margin-top: 15px;
+    border-collapse: separate;
+
+}
+#formEstudiantes .tablae .c1e{
+    text-align: center;
+    border-radius: 25px;
+
+}
+#formEstudiantes .ui-button-success{
+    color: white;
+    background: #5FCAA8;
+    border: none;
+    border-radius: 35px;
+    top:0;
+    box-sizing: border-box;
+    z-index: 200;
+}
+
+#formEstudiantes .buscare:hover{
+    border: none;
+}
+#formEstudiantes .ui-button-success:hover{
+    border: 1px solid white;
+}
+
+#formEstudiantes .ui-datatable .ui-datatable-header{
+    border-radius: 50px;
+}
+
+#formEstudiantes .ui-datatable thead th {
+    background: gainsboro;
+}
+#formEstudiantes  .ui-inputfield {
+    text-align: center;
+    border-radius: 35px;
+    background: white;
+    width: 135px;
+    border: 2px solid #AFAFAF;
+}
+
+#formEstudiantes  .ui-inputfield:hover{
+    border: 1px solid white;
+}
+
+.ui-selectmanycheckbox.ui-widget td, .ui-selectoneradio.ui-widget td{
+    display: block;
+}
+i.pi.pi-search {
+    margin-left: 370px;
+    margin-top: 13px;
+    position: absolute;
+    color: #AFAFAF;
+}
+ui-cell-editor-output {
+    background: red;
+}
+
+
+/*USUARIO*/
+
+#formUsuarios {
+
+    margin: auto;
+    width: 70%;
+    margin-top: 10px;
+}
+#formUsuarios .tablau table{
+    margin-top: 15px;
+    border-collapse: separate;
+
+}
+#formUsuarios .tablau .c1u{
+    text-align: center;
+    border-radius: 25px;
+
+}
+
+#formUsuarios .ui-button-success{
+    color: white;
+    background: #5FCAA8;
+    border: none;
+    border-radius: 35px;
+    top:0;
+    box-sizing: border-box;
+    z-index: 200;
+}
+
+#formUsuarios .buscaru:hover{
+    border: none;
+}
+
+#formUsuarios .ui-button-success:hover{
+    border: 1px solid white;
+}
+
+#formUsuarios .ui-datatable .ui-datatable-header{
+    border-radius: 50px;
+}
+
+#formUsuarios .ui-datatable thead th {
+    background: gainsboro;
+}
+#formUsuarios  .ui-inputfield {
+    text-align: center;
+    border-radius: 35px;
+    background: white;
+    width: 135px;
+    border: 2px solid #AFAFAF;
+}
+
+
+#formUsuarios  .ui-inputfield:hover{
+    border: 1px solid white;
+}
+
+.ui-selectmanycheckbox.ui-widget td, .ui-selectoneradio.ui-widget td{
+    display: block;
+}
+i.pi.pi-search {
+    margin-left: 370px;
+    margin-top: 13px;
+    position: absolute;
+    color: #AFAFAF;
+}
+.i.fas.fa-users{
+    color: red;
+}

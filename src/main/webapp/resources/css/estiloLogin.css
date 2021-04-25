@@ -1,0 +1,977 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.calendario input {
+    height: 30px;
+    background: none;
+    border: none;
+    width: 100%;
+    outline: none;
+    line-height: 2px;
+    font-weight: 600;
+    font-size: 0.7rem;
+}
+body{
+
+    font-family: "Poppins", sans-serif;
+
+
+}
+/*botones*/
+.btn {
+    width: 150px;
+    background-color: #A3E4D7;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+    position: relative;
+}
+
+.btn:hover {
+    background-color: #5FCAA8;
+    color: grey;
+}
+/*//CONTENEDOR*/
+/*TODA LA PRIMER PANTALLA (INICIAR REGISTRO Y EXPLORAR)*/
+.contenedor{
+
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    min-height: 100vh;
+    overflow: hidden;
+    overflow-y: hidden;
+}
+/*circulo azul*/
+.contenedor:before{
+    content: "";
+    position: absolute;
+    height: 2000px;
+    width: 2000px;
+    top: -10%;
+    right: 48%;
+    transform: translateY(-50%);
+    background-image: linear-gradient(-45deg, #5FCAA8  50%, #5FCAA8  100%);
+    transition: 1.8s ease-in-out;
+    border-radius: 50%;
+    z-index: 6;
+}
+/*//CONTENEDOR-FORMS*/
+
+/*aqui están las imagenes de fondo*/
+.contenedor-forms{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0;
+    overflow: hidden;
+}
+
+/*//LOGIN-REGISTRO*/
+/*Campos de login y registro juntos*/
+.login-registro{
+    position: absolute;
+    top: 50%;
+    /*posicion*/
+    transform: translate(-50%, -50%);
+    left: 75%;
+    width: 50%;
+    transition: 1s 0.7s ease-in-out;
+    display: grid;
+    grid-template-columns: 1fr;
+    z-index: 5;     
+    overflow-x: inherit;
+
+}
+/*botones para iniciar sesion y registrarse*/
+.btn.solid{
+    text-transform: capitalize;
+    width: 150px;
+    background-color: #5FCAA8;
+    border: none;
+    outline: none;
+    height: 40px;
+    border-radius: 49px;
+    color: #fff;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.btn.solid:hover{
+    background: #5FCAA8;
+    color: grey;
+}
+/*FORM*/
+form {
+    /*para rellenar el espacio*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0rem 5rem;
+    transition: all 0.2s 0.7s;
+    overflow: hidden;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+form.login-form{
+    z-index: 2;
+}
+
+/*dar forma a los campos para rellenar*/
+.campos {
+    max-width: 380px;
+    width: 100%;
+    /*fondo*/
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 35px;
+    border-radius: 30px;
+    /*contenedor de cuadricula*/
+    display: grid;
+    /*define las columnas entre el icono y el campo para llenar*/
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+}
+/*iconos de los campos*/
+.campos i {
+    text-align: center;
+    line-height: 33px;
+    transition: 0.5s;
+    /*tamaño de los iconos*/
+    font-size: 1.1rem;
+}
+
+.campos .rellenar{
+    background-color: inherit;
+    outline: none;
+    border-radius: 35px;
+    border: none;
+    width: 100%;
+    line-height: 2px;
+    font-weight: 600;
+    font-size: 0.7rem;
+}
+
+.campos .rellenar:focus{
+    outline: red;
+
+}
+/*LADO DEL REGISTRO*/
+/*aqui desaparce el registro*/
+form.registro-form{
+    opacity: 0;
+    z-index: 1;
+}
+.campos .reg{
+    background: inherit;
+    outline: none;
+    border: none;
+    width: 100%;
+    line-height: 2px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    padding-right: 1px;
+    border-radius: 35px;
+}
+
+
+/*divide la pantalla en dos*/
+.contenedores-ventanas {
+
+    position: absolute;
+    height: 5%;
+    width: 100%;
+    top:0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.btn.transparente{
+    text-transform: capitalize;
+    margin: 0;
+    background: white;
+    color: black;
+    border: 2px solid #fff;
+    width: 130px;
+    height: 41px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    z-index: 200;
+}
+.btn.transparente:hover{
+
+    color: gray;
+}
+/*acomoda la posicion de las dos pantallas*/
+.ventana{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    text-align: center;
+    z-index: 6;
+}
+.ventana h3{
+
+    color: black;
+    font-weight: 600;
+    line-height: 1;
+    font-size: 1.5rem;
+}
+
+.ventana p{
+    color: black;
+    font-size: 0.95rem;
+    padding: 0.7rem 0;
+}
+.ventana-izquierda{
+
+    pointer-events: all;
+    margin-top: 0;
+    padding: 3rem 17% 2rem 12%;
+
+}
+.ventana .contenido{
+    color: #fff;
+
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.6s;
+}
+.ventana .contenido.cetec{
+
+    margin: 20px;
+
+}
+.ventana-derecha{
+    pointer-events: none;
+    padding: 3rem 12% 2rem 17%;
+}
+/*IMAGENES QUE APARECEN EN LA PANTALLA PRINCIPAL*/
+.imagen{
+    width: 100%;
+    transition: transform 1.1s ease-in-out;
+    transition-delay: 0.4s;
+}
+/*BOTON DE EXPLORAR*/
+#exp{
+
+    background: #5FCAA8;
+    color: white;
+    margin-top: 25px;
+    margin-right: 80px;
+    position:fixed;
+    top:0;
+    right:15px;
+}
+#exp:hover{
+    color: grey;
+}
+/*VENTANA DE EXPLORAR CURSOS*/
+
+#cabecera{
+    /*background: yellow;*/
+    width: 89%;
+    margin: auto;
+    margin-left: 80px;
+    margin-right: 80px;
+    position: fixed;
+
+    /*left: 87px;*/
+}
+#cabecera .logo-cabecera{
+    position: fixed;
+    cursor: pointer;
+    margin-top: -25px;
+    margin-left: -850px;
+    height: 80px;
+    /*opacity: 0;*/
+
+}
+.logo-cabecera{
+    opacity: 0
+}
+#regresarInicio{
+
+    color: #5FCAA8;
+    position:fixed;
+    background: white;
+    border: 1px solid #5FCAA8;
+    margin-top: 25px;
+    margin-right: 30px;
+    top:0;
+    right:65px;
+    box-sizing: border-box;
+    z-index: 200;
+    opacity: 0;
+
+}
+#regresarInicio:hover{
+    color: gray;
+}
+header{
+    position: fixed;
+}
+#cabecera a{
+    position: fixed;
+    margin-top: 20px;
+    color: white;
+    font-size: 17px;
+    margin-left: 870px;
+    text-decoration: none;
+
+}
+
+.barra-arriba{
+    margin: auto;
+    width: 100%;
+    opacity: 0;
+    z-index: 1000;
+    font-size: 50px;
+    font-weight: bold;
+    background: #5FCAA8;
+    height: 90px;
+
+}
+.barra-arriba .ui-g-1{
+
+    margin-top: -10px;
+}
+.scrolli{
+    overflow-y: scroll;
+    opacity: 0;
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+/*COTENIDO DE LA VENTADA DE ABAJO DESDE LA IMAGEN*/
+.contenido1{
+    position: absolute;
+    top: 55px;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#cont-img{
+    width: 90%;
+
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+#cont-img .ui-g-12 img{
+    width: 100%;
+    height: 200px;
+}
+/*PANTALLA DE INICIO*/
+section #texto1{
+
+    /* para hacer los elementos visibles */
+    overflow: hidden;
+    margin-top: 200px;
+    margin-left: 80px;
+    margin-right: 80px;
+    height: 250%;
+    position: absolute;
+}
+/*PAGINA DE INICIO*/
+.iniciar{
+    height: 300px;
+    float: top;
+    height: 80%;
+    margin: auto;
+    width: 90%;
+    /*box-sizing: border-box;*/
+}
+.iniciar div{
+    margin-top: 15px;
+}
+.iniciar #peque{
+
+    top: 0;
+
+
+}
+section .espacio1{
+    height: 100px;
+    background: none;
+    opacity: 0;
+}
+.imagen1{
+    width: 90%;
+    transition: transform 1.1s ease-in-out;
+    transition-delay: 0.4s;
+}
+section .espacio2{
+    height: 100px;
+    background: none;
+    opacity: 0;
+}
+section .cursos{
+    z-index: 100;
+    width: 100%;
+    margin-top: 1200px;
+    overflow: hidden;
+    position: absolute;
+
+
+}
+
+
+
+body #formExplorar .ui-datagrid .ui-datagrid-content {
+    border: none;
+}
+/*botones de seguir*/
+body #formExplorar .ui-datagrid .ui-datagrid-content .botone {
+    border-radius: 35px;
+    background: #5FCAA8;
+    border: none;
+    position: static;
+    margin-top: 30px;
+    margin-left: 200px;
+}
+body #formExplorar .ui-datagrid .ui-datagrid-content  {
+    text-align: center;
+    margin: auto;
+    padding-left: 30px;
+}
+/*tarjetas*/
+body #formExplorar .ui-panel .ui-panel-content {
+    height: 450px;
+    position: relative;
+    line-height: 40px;
+    border: #dddddd 2px solid;
+    border-radius: 5px;
+
+}
+.imagenCur{
+    margin-top: 15px;
+    height: 155px;
+}
+body #formExplorar .ui-panel .ui-panel-content .niv{
+    margin-left: -140px;
+    position: absolute;
+}
+body #formExplorar .ui-panel .ui-panel-content .cup {
+    border: #11BC0B 2px solid;
+    padding: 5px;
+    color: #11BC0B;
+    font-size: 13px;
+    margin-right: -210px;
+    margin-top: 500px; 
+    border-radius:15px;
+
+}
+body #formExplorar .ui-panel .ui-panel-content .cup1 {
+    border: #D7212E 2px solid;
+    padding: 5px;
+    color: #D7212E;
+    font-size: 13px;
+    margin-right: -210px;
+    margin-top: 500px; 
+    border-radius:15px;
+   
+}
+body #formExplorar .ui-panel .ui-panel-content .cup2 {
+    opacity: 0;
+   
+}
+body #formExplorar .ui-panel .ui-panel-content .tit {
+    font-weight: bold;
+    font-size: 20px;
+
+}
+body #formExplorar .ui-panel .ui-panel-content .product-description{
+    text-align: justify;
+    line-height: 18px;
+    color: #AFAFAF;
+
+}
+body #formExplorar .ui-panel .ui-panel-content .product-price{
+    position: absolute;
+    margin-bottom: 0px;
+    margin-left: -170px;
+    margin-top: 30px;
+
+}
+
+/*cabecera tarjetas*/
+body .ui-panel .ui-panel-titlebar{
+    height: 0px;
+
+    background: #EAECEE;
+}
+
+i.fas.fa-layer-group{
+
+    position: absolute;
+    margin-left: -170px;
+    margin-top: 16px;
+}
+.product-description a{
+    color: #AFAFAF;
+}
+
+
+
+
+
+
+
+section .nosotros{
+    /* para hacer los elementos visibles */
+    overflow: hidden;
+    margin-top: 2250px;
+    margin-left: 80px;
+    margin-right: 80px;
+    position: absolute;
+    text-align: justify;
+
+
+}
+section .nosotros form img{
+    float: left;
+    padding-right: 30px;
+}
+section #texto3 form ul li{
+    margin-left: 50px;
+
+}
+
+section .espacio3{
+    height: 150px;
+    background: none;
+    opacity: 0;
+}
+
+section .contactos{
+
+    margin-left: 80px;
+    margin-right: 80px;
+    position: absolute;
+    text-align: left;
+    overflow: hidden;
+
+}
+
+/*PIE DE PAGINA*/
+
+
+#part-inf{
+    float: bottom;
+
+    position: relative;
+    width: 90%;
+    top: 2800px;
+    margin: auto;
+    overflow: hidden;
+    background-color: #5FCAA8;
+    font-size: 18px;
+    color: white;
+    display: block;
+    bottom: 0;
+    opacity: 0;
+}
+
+#part-inf .parte{
+    margin-left: 160px;
+    line-height: 30px;
+}
+.parte h3{
+    margin-left: 50px;
+}
+.parte h3 .titRedes{
+    margin-left: 500px;
+}
+#part-inf .parte a{
+    margin-bottom: 0;
+    color: white;
+    font-size: 17px;
+    margin: 5px;
+    text-decoration: none;
+}
+
+#part-inf .parte #iconos-redes{
+    padding-left: 0px;
+
+}
+#part-inf .parte #nombres-redes{
+    margin-left: -50px;
+    line-height: 37px;
+
+}
+#part-inf .copy {
+    text-align: center;
+    font-size: 13px;
+}
+
+.social-icon {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    border-radius: 50%;
+    border: 1px solid white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    margin-bottom: 0;
+}
+
+.social-icon:hover {
+    color: #4481eb;
+    border-color: #5FCAA8;
+}
+
+
+
+
+
+
+@media(max-width:650px){
+    #cont-principal{
+        width: 100%;
+        float: none;
+    }
+    #barra-lateral{
+        width: 100%;
+        float: none;
+    }
+}
+
+
+/*HASTA AQUI SE MUESTRA COMO PANTALLA PRINCIPAL LA DE INICIAR SESION*/
+
+/*ANIMACION*/
+/*VENTANA DE CURSOS*/
+
+/*da la vuelta de la bolita*/
+.contenedor.curso-mode:before{
+    opacity: 0;
+    transform: translate(1%, 20%);
+    right: 52%;
+}
+
+/*mueve la imagen*/ 
+.contenedor.curso-mode .imagen,
+.contenedor.curso-mode .contenido{
+
+    transform: translateY(800px);
+    opacity: 0;
+    -webkit-animation: opaco 2s;
+}
+@-webkit-keyframes opaco{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+.contenedor.curso-mode .ventana-izquierda #exp{
+    opacity: 0;
+    -webkit-animation: opaco 2s;
+}
+
+.contenedor.curso-mode  #regresarInicio{
+    opacity: 1;
+    z-index: 200;
+
+}
+.contenedor.curso-mode  .barra-arriba {
+    opacity: 1;
+    z-index: 100;
+
+}
+.contenedor.curso-mode  #part-inf {
+    opacity: 1;
+    z-index: 100;
+
+}
+.contenedor.curso-mode header{
+    z-index: 3000;
+}
+
+.contenedor.curso-mode .logo-cabecera {
+    opacity: 1;
+    z-index: 100;
+
+}
+.contenedor.curso-mode .login-registro{
+    bottom: 100%;
+    opacity: 0;
+    -webkit-animation: opaco 2s;
+
+}
+.contenedor.curso-mode .scrolli{
+    opacity: 1;
+    -webkit-animation: opaco1 5s;
+}
+@-webkit-keyframes opaco1{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.contenedor.curso-mode form.login-form{
+    opacity: 0;
+    z-index: 1;
+}
+
+.contenedor.curso-mode  .scrolli{
+
+    transform: translateX(0%);
+    transform: translateY(0%);
+
+
+}
+
+.contenedor.curso-mode .ventana-izquierda{
+    pointer-events: none;
+}
+
+
+.contenedor.curso-mode{
+    pointer-events: all;
+}
+
+
+
+
+
+/*VENTANAS DE INICIO Y REGISTRO*/
+
+.ventana-derecha .imagen, .ventana-derecha .contenido{
+    transform: translateX(800px);
+
+}
+/*da la primer vuelta de la bolita*/
+.contenedor.registro-mode:before{
+    transform: translate(100%, -50%);
+    right: 52%;
+}
+
+/*mueve la imagen de Eres nuevo aqui?*/ 
+.contenedor.registro-mode .ventana-izquierda .imagen,
+.contenedor.registro-mode .ventana-izquierda .contenido{
+    transform: translateX(-800px);
+}
+
+/*mueve el iniciar sesion a la izquierda*/
+.contenedor.registro-mode .login-registro{
+    left: 25%;
+
+}
+
+/*aparece el registrarse*/
+.contenedor.registro-mode form.registro-form{
+    opacity: 1;
+    z-index: 2;
+}
+
+/*desaparece el inicar sesion del fondo*/
+.contenedor.registro-mode form.login-form{
+    opacity: 0;
+    z-index: 1;
+}
+
+/*pone la imagen de registro en su lugar*/
+.contenedor.registro-mode .ventana-derecha .imagen,
+.contenedor.registro-mode .ventana-derecha .contenido{
+    transform: translateX(0%);
+}
+
+.contenedor.registro-mode .ventana-izquierda{
+    pointer-events: none;
+}
+.contenedor.registro-mode .ventana-izquierda #exp{
+    opacity: 0;
+    -webkit-animation: opaco 1s;
+}
+
+
+.contenedor.registro-mode .ventana-derecha{
+    pointer-events: all;
+}
+
+/*ajustar contenido a la ventana*/
+
+@media (max-width: 870px){
+    .contenedor{
+        min-height: 800px;
+        height:100vh;  
+    }
+
+    .login-registro{
+        width: 100%;
+        top: 95%;
+        transform: translate(-50%, -80%);
+        transition: 1s 0.8s ease-in-out;
+    }
+
+    .login-registro, .contenedor.registro-mode .login-registro{
+        left: 50%;
+    }
+
+    .ventana-contenedor{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr 1fr;
+    }
+
+    .ventana{
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2.5rem 8%;
+        grid-column: 1 / 2;
+    }
+
+    .ventana-derecha{
+        grid-row: 3 / 4;
+    }
+
+    .ventana-izquierda{
+        grid-row: 1 / 2;
+    }
+
+    .imagen{
+        width: 200px;
+        transition: transform 0.9s ease-in-out;
+        transition-delay: 0.6s;
+    }
+
+    .ventana .contenido{
+        padding-right: 15%;
+
+        transition: transform 0.9s ease-in-out;
+        transition-delay: 0.8s;
+    }
+    .cetec{
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 50px;
+    }
+    .ventana h3{
+        font-size: 1.2rem;
+    }
+
+    .ventana p{
+        font-size: 0.7rem;
+        padding: 0.5rem 0;
+        padding-left: 50px;
+    }
+
+    .btn.transparente{
+        width: 110px;
+        height: 35px;
+        font-size: 0.7rem;
+    }
+
+    .btn.transparente:hover{
+        color: #dddddd;
+    }
+
+    .contenedor:before{
+        width: 1500px;
+        height: 1500px;
+        transform: translateX(-50%);
+        left: 30%;
+        bottom: 68%;
+        right: initial;
+        top: initial;
+        transition: 2s ease-in-out;
+    }
+
+    .contenedor.registro-mode:before{
+        /*-75*/
+        /*circulo en la esquina*/
+        transform: translate(-75%, 100%);
+        bottom: 32%;
+        right: initial;
+    }
+
+    .contenedor.registro-mode .ventana-izquierda .imagen,
+    .contenedor.registro-mode .ventana-izquierda .contenido{
+        transform: translateY(-300px);
+    }
+
+    .contenedor.registro-mode .ventana-derecha .imagen,
+    .contenedor.registro-mode .ventana-derecha .contenido{
+        transform: translateY(0px);
+    }
+
+
+    .ventana-derecha .contenido, .ventana-derecha .imagen{
+        transform: translateY(300px);
+    }
+
+
+
+
+    .contenedor.registro-mode .login-registro{
+        top: 1%;
+
+        transform: translate(-30%, 0);
+    }
+
+    @media (max-width: 570px){
+        form{
+
+            padding: 0 1.5rem;
+        }
+
+        .imagen {
+
+            display: none;
+        }
+
+        .ventana .contenido {
+            padding: 0.9rem 1rem;
+
+        }
+
+        .contenedor{
+            padding: 1.5rem;
+        }
+
+        .contenedor:before {
+
+            bottom: 72%;
+            left: 50%;
+        }
+
+        .contenedor.registro-mode:before {
+
+            bottom: 28%;
+            left: 50%;
+        }
+    }
+
+}

@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/templates/plantilla.xhtml">
+
+            <ui:define name="content">
+
+                <div>
+
+                    <p:growl id="mensaje" showDetail="true" showSummary="false" />
+
+                    <p:dialog id="dialog" widgetVar="dialogDocente" header="Nuevo docente" responsive="true" showEffect="fade" modal="true" resizable="falase" closeOnEscape="true" draggable="false">
+                        <h:form id="form">
+
+                            <h:panelGrid columns="3" id="pgDocente">
+
+                                <p:outputLabel for="txtNombre1" value="Nombre" />
+                                <p:inputText id="txtNombre1" value="#{docenteBean.docenteSeleccionado.nombre}" required="true" requiredMessage="Campo requerido"/>                    
+                                <p:message for="txtNombre1" />
+
+                                <p:outputLabel for="txtApellido1" value="Apellido" />
+                                <p:inputText id="txtApellido1" value="#{docenteBean.docenteSeleccionado.apellido}" required="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtApellido1" />
+
+                                <p:outputLabel for="txtCedula1" value="Cédula" />
+                                <p:inputMask id="txtCedula1" value="#{docenteBean.docenteSeleccionado.cedula}" required="true" requiredMessage="Campo requerido" mask="9999999999" slotChar=""/>
+                                <p:message for="txtCedula1" />
+
+                                <p:outputLabel for="txtEmail1" value="Email" />
+                                <p:inputText id="txtEmail1" value="#{docenteBean.docenteSeleccionado.email}" required="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtEmail1" />
+
+                                <p:outputLabel for="txtTelefono1" value="Teléfono" />
+                                <p:inputMask id="txtTelefono1" value="#{docenteBean.docenteSeleccionado.telefono}" required="true" requiredMessage="Campo requerido" mask="9999999999" slotChar=""/>
+                                <p:message for="txtTelefono1" />
+
+                                <p:outputLabel for="txtTitulo1" value="Título" />
+                                <p:inputText id="txtTitulo1" value="#{docenteBean.docenteSeleccionado.titulo}" required="true" requiredMessage="Campo requerido"/>
+                                <p:message for="txtTitulo1" />
+
+                                <h:column />
+                                <p:commandButton value="Registrar" actionListener="#{docenteBean.agregarDocente()}" update=":form:pgDocente, :formDocentes, mensaje"/>
+
+                            </h:panelGrid>
+                        </h:form>
+                    </p:dialog>
+
+                </div>
+
+                <div>
+
+                    <h:form id="formDocentes">
+                        <p:commandButton value="Docentes registrados" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
+                                         icon="pi pi-arrow-down" styleClass="p-mr-2">
+                            <p:fileDownload value="#{reporteBean.fileProfesor}"/>
+                        </p:commandButton>
+
+                        <p:dataTable var="docen" value="#{docenteBean.docentes}" widgetVar="docenBuscar" 
+
+                                     rows="5" id="dtDocen" editable="true" styleClass="tablad"
+
+                                     paginator="true" paginatorPosition="bottom"
+                                     paginatorTemplate="  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                     rowsPerPageTemplate="5,10,15"
+
+                                     emptyMessage="No se encontró registros."
+                                     filteredValue="#{docenteBean.docentesFiltrados}"
+                                     globalFilterFunction="#{docenteBean.globalFilterFunction}">
+
+                            <f:facet name="header">
+                                <div>
+
+                                    <p:commandButton class="nuevo" value="Nuevo" icon="pi pi-plus" styleClass="ui-button-success" 
+                                                     style="margin-right: .5rem" onclick="PF('dialogDocente').show();" />
+
+                                    <span>
+                                        <i class="pi pi-search"></i>
+
+                                        <p:inputText class="buscard" id="globalFilter" onkeyup="PF('docenBuscar').filter()" style="width:400px"
+                                                     placeholder="Buscar registro" />
+                                    </span>
+                                </div>
+                            </f:facet>
+
+                            <p:column headerText="ID" sortBy="#{docen.idDocente}" class="c1d">                                    
+                                <h:outputText value="#{docen.idDocente}" />                                    
+                            </p:column>
+
+                            <p:column headerText="Nombre" sortBy="#{docen.nombre}" class="c1d">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{docen.nombre}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{docen.nombre}" />
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Apellido" sortBy="#{docen.apellido}" class="c1d">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{docen.apellido}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{docen.apellido}" />
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Cédula" sortBy="#{docen.cedula}" class="c1d">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{docen.cedula}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputMask value="#{docen.cedula}" mask="9999999999" slotChar=""/>
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Email" sortBy="#{docen.email}" class="c1d">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{docen.email}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{docen.email}" />
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Teléfono" sortBy="#{docen.telefono}" class="c1d">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{docen.telefono}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputMask value="#{docen.telefono}" mask="9999999999" slotChar=""/>
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Titulo" sortBy="#{docen.titulo}" class="c1d">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{docen.titulo}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{docen.titulo}" />
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Estado" sortBy="#{docen.estado}" class="c1d">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{docenteBean.estadoTxt(docen)}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:selectOneRadio id="console" value="#{docen.estado}" unselectable="true">
+                                            <f:selectItem itemLabel="Activo" itemValue="1"/>
+                                            <f:selectItem itemLabel="Inactivo" itemValue="0"/>
+                                        </p:selectOneRadio>
+                                    </f:facet>
+
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column style="width:30px;text-align: left; padding-left: 0px" headerText="Editar" class="c1d">
+                                <p:rowEditor editTitle="Editar fila" cancelTitle="Cancelar" saveTitle="Guardar"/>
+                            </p:column>
+
+                            <p:ajax event="rowEdit" listener="#{docenteBean.actualizarDocente(docen)}" update="mensaje" />
+
+
+                        </p:dataTable>
+
+                    </h:form>
+
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
